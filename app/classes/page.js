@@ -3,6 +3,8 @@ import ClassesScripts from "@/components/ClassesScripts";
 export const metadata = {
   title: "Classes: Gele Glamzzz | Learn Gele Tying in London",
   description: "Private lessons, small group workshops and bridal party masterclasses. Learn to tie a gele with Gele Glamzzz in London.",
+  keywords: ["gele tying classes London", "learn to tie gele", "gele workshop London", "bridal party gele lesson"],
+  alternates: { canonical: "/classes" },
 };
 
 const CLASSES = [
@@ -22,7 +24,7 @@ export default function ClassesPage() {
         <div className="page-hero__scrim" aria-hidden="true"></div>
         <div className="page-hero__content">
           <span className="eyebrow" data-reveal style={{ color: "var(--gold-soft)" }}>Learn The Craft</span>
-          <h1 className="display-2" data-reveal style={{ marginTop: ".6rem" }}>Tie it like<br />Glamzzz.</h1>
+          <h1 className="display-2" data-reveal style={{ marginTop: ".6rem" }}>Tie it like<br />Gele Glamzzz.</h1>
         </div>
       </section>
 

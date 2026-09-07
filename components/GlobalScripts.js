@@ -109,42 +109,27 @@ export default function GlobalScripts() {
     const bar = document.getElementById("loaderBarFill");
     if (loader && mark && bar) {
       const brand = "GELE GLAMZZZ";
-      mark.innerHTML = brand.split("").map((ch) => `<span>${ch === " " ? "&nbsp;" : ch}</span>`).join("");
+      // per-letter stagger is set inline since the CSS animation itself is
+      // shared — this is plain CSS underneath, so it plays identically
+      // regardless of connection speed, nothing to download or wait for.
+      mark.innerHTML = brand.split("").map((ch, i) =>
+        `<span style="animation-delay:${i * 35}ms">${ch === " " ? "&nbsp;" : ch}</span>`
+      ).join("");
       document.body.classList.add("modal-open");
       function reveal() {
         loader.classList.add("is-done");
         document.body.classList.remove("modal-open");
         window.dispatchEvent(new CustomEvent("gg:loaderDone"));
-        setTimeout(() => { loader.style.display = "none"; }, 900);
+        setTimeout(() => { loader.style.display = "none"; }, 50);
       }
-      function skipInstantly() {
+      if (prefersReducedMotion) {
         loader.style.display = "none";
         document.body.classList.remove("modal-open");
         window.dispatchEvent(new CustomEvent("gg:loaderDone", { detail: { skip: true } }));
-      }
-      function playAnimated() {
-        const shutterBars = loader.querySelectorAll("#loaderShutter span");
-        const tl = gsap.timeline({ onComplete: reveal });
-        tl.to(mark.querySelectorAll("span"), { y: "0%", duration: 0.7, stagger: 0.035, ease: "power3.out" })
-          .to(bar, { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, "-=0.2")
-          .to([mark, bar], { autoAlpha: 0, scale: 1.06, filter: "blur(6px)", duration: 0.45, ease: "power2.in" }, "+=0.1")
-          .to(shutterBars, { scaleY: 0, duration: 0.6, stagger: 0.05, ease: "power4.inOut" }, "-=0.15");
-      }
-      if (prefersReducedMotion) {
-        skipInstantly();
-      } else if (window.gsap) {
-        playAnimated();
       } else {
-        // gsap is loaded via a beforeInteractive <Script>, which usually wins the
-        // race against this effect — but on a slower connection it sometimes
-        // hasn't actually finished fetching yet. Give it a moment rather than
-        // silently skipping the whole loader the instant that happens.
-        const start = Date.now();
-        (function waitForGsap() {
-          if (window.gsap) return playAnimated();
-          if (Date.now() - start > 1500) return skipInstantly();
-          setTimeout(waitForGsap, 40);
-        })();
+        // matches the full CSS sequence: letters (up to ~985ms) + bar fill
+        // (to 1250ms) + dissolve (to 1800ms) + shutter sweep (to 2500ms)
+        setTimeout(reveal, 2550);
       }
     } else {
       window.dispatchEvent(new CustomEvent("gg:loaderDone", { detail: { skip: true } }));

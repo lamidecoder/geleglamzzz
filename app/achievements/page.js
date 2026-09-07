@@ -3,6 +3,8 @@ import ClassesScripts from "@/components/ClassesScripts";
 export const metadata = {
   title: "Achievements: Gele Glamzzz | Recognition & Milestones",
   description: "Styling Grammy-nominated artist Ayra Starr, a Vogue feature, and gele workshops hosted across London and leading UK universities.",
+  keywords: ["Ayra Starr gele", "gele Vogue feature", "gele university workshops UK", "notable gele stylist"],
+  alternates: { canonical: "/achievements" },
 };
 
 export default function AchievementsPage() {

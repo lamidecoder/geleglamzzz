@@ -6,6 +6,8 @@ import { TESTIMONIALS, INSTAGRAM, JOURNAL_MEDIA } from "@/lib/data";
 export const metadata = {
   title: "Gele Glamzzz: Luxury Gele Artistry in London | The Art of the Crown",
   description: "Gele Glamzzz is a London based luxury gele artist crafting bridal, ceremonial and editorial headwraps with precision and presence. Discover the artistry and book your experience.",
+  keywords: ["gele artist London", "luxury gele styling", "aso oke gele", "bridal gele London", "Nigerian headwrap stylist", "gele Glamzzz"],
+  alternates: { canonical: "/" },
 };
 
 // Looks for an actual video file instead of requiring an exact hardcoded
@@ -224,9 +226,7 @@ export default function HomePage() {
           <div className="instagram__grid">
             {INSTAGRAM.map((ig, i) => (
               <a key={i} className="instagram__item" href="https://www.instagram.com/geleglamzzz/" target="_blank" rel="noopener noreferrer" data-cursor="view">
-                <div className="media-frame__art" style={{ background: ig.grad, color: ig.line }}>
-                  <svg viewBox="0 0 300 375" preserveAspectRatio="xMidYMid slice"><use href={`#${ig.sym}`} /></svg>
-                </div>
+                <div className="media-frame__art"><img src={ig.img} alt={ig.alt} loading="lazy" /></div>
               </a>
             ))}
           </div>

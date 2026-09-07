@@ -4,6 +4,8 @@ import ClassesScripts from "@/components/ClassesScripts";
 export const metadata = {
   title: "Services: Gele Glamzzz | Bridal, Ceremony & Private Gele Styling in London",
   description: "Bridal gele, traditional ceremonies, special occasions, photoshoots and private bookings. Explore the full Gele Glamzzz experience in London.",
+  keywords: ["bridal gele London", "traditional gele styling", "gele for special occasions", "editorial gele photoshoot", "private gele booking"],
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

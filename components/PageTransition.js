@@ -3,11 +3,15 @@ import { useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 /**
- * The shutter/curtain sweep played between page navigations.
- * Rendered once in the root layout. Exposes window.__navigateWithTransition
- * so ANY part of the app (a plain <a>, or a JS-driven navigation like a
- * clicked service row) can trigger the same animated route change.
+ * The shutter/curtain sweep played between page navigations. Pure CSS
+ * transitions underneath (see .page-transition rules in globals.css) — no
+ * external library to wait for, so it's exact and consistent regardless of
+ * connection speed. Rendered once in the root layout. Exposes
+ * window.__navigateWithTransition so any part of the app (a plain <a>, or a
+ * JS-driven navigation like a clicked service row) can trigger it.
  */
+const CLOSE_MS = 450; // .28s transition + .15s stagger on the last bar, plus a small buffer
+
 export default function PageTransition() {
   const pathname = usePathname();
   const router = useRouter();
@@ -19,22 +23,13 @@ export default function PageTransition() {
   useEffect(() => {
     function navigate(href) {
       const overlay = document.getElementById("pageTransition");
-      const bars = overlay ? overlay.querySelectorAll("span") : [];
       const prefersReducedMotion = window.__prefersReducedMotion;
-      if (!overlay || !bars.length || prefersReducedMotion || !window.gsap) {
-        if (prefersReducedMotion) console.info("[page transition] skipped: your system's reduce-motion setting is on.");
-        else if (!window.gsap) console.warn("[page transition] skipped: GSAP hasn't loaded. Navigation still works, just without the sweep.");
+      if (!overlay || prefersReducedMotion) {
         routerRef.current.push(href);
         return;
       }
-      overlay.classList.add("is-active");
-      gsap.to(bars, {
-        scaleY: 1,
-        duration: 0.45,
-        stagger: 0.035,
-        ease: "power3.inOut",
-        onComplete: () => routerRef.current.push(href),
-      });
+      overlay.classList.add("is-active", "is-closing");
+      setTimeout(() => routerRef.current.push(href), CLOSE_MS);
     }
     window.__navigateWithTransition = navigate;
     return () => { delete window.__navigateWithTransition; };
@@ -76,20 +71,17 @@ export default function PageTransition() {
     }
     const overlay = document.getElementById("pageTransition");
     if (!overlay) return;
-    const bars = overlay.querySelectorAll("span");
     const prefersReducedMotion = window.__prefersReducedMotion;
 
-    if (prefersReducedMotion || !window.gsap) {
-      overlay.classList.remove("is-active");
+    if (prefersReducedMotion) {
+      overlay.classList.remove("is-active", "is-closing");
       return;
     }
-    gsap.to(bars, {
-      scaleY: 0,
-      duration: 0.5,
-      stagger: 0.035,
-      ease: "power3.inOut",
-      delay: 0.05,
-      onComplete: () => overlay.classList.remove("is-active"),
+    // one frame so the browser registers is-closing before we remove it —
+    // otherwise the transition has nothing to animate from
+    requestAnimationFrame(() => {
+      overlay.classList.remove("is-closing");
+      setTimeout(() => overlay.classList.remove("is-active"), CLOSE_MS);
     });
   }, [pathname]);
 

@@ -4,6 +4,8 @@ import ClassesScripts from "@/components/ClassesScripts";
 export const metadata = {
   title: "Journal: Gele Glamzzz | Pictures & Video from the Studio",
   description: "A live feed of pictures and video from Gele Glamzzz: finished looks, behind the fold, and moments from the studio.",
+  keywords: ["gele styling photos", "gele behind the scenes", "gele video London"],
+  alternates: { canonical: "/journal" },
 };
 
 function PlayIcon() {

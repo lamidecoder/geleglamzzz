@@ -3,6 +3,8 @@ import AboutScripts from "@/components/AboutScripts";
 export const metadata = {
   title: "About: Gele Glamzzz | Meet the Founder",
   description: "Meet the founder, stylist and teacher behind Gele Glamzzz, a London based luxury gele artist.",
+  keywords: ["gele artist founder", "London gele stylist", "gele teacher London", "about Gele Glamzzz"],
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
