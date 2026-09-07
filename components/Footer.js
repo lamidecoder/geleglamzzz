@@ -39,6 +39,7 @@ export default function Footer() {
           <div className="footer__legal">
             <a href="#" data-placeholder-link>Privacy</a>
             <a href="#" data-placeholder-link>Terms</a>
+            <span>Website by NexusHouseUK</span>
           </div>
         </div>
       </div>
