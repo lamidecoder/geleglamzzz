@@ -94,7 +94,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ Notable Work: Ayra Starr ============ */}
-      <section className="section-pad" style={{ background: "var(--void)", color: "var(--ivory)" }}>
+      <section className="section-pad on-dark" style={{ background: "var(--void)", color: "var(--ivory)" }}>
         <div className="container">
           <div className="story__block">
             <div className="story__media media-frame" data-reveal-scale>
@@ -109,7 +109,6 @@ export default function HomePage() {
               <h2 className="h3" data-reveal style={{ marginTop: ".8rem" }}>Styled for<br />the stage.</h2>
               <p className="body-copy" data-reveal style={{ marginTop: "1.2rem" }}>Ayra Starr doesn&apos;t do quiet entrances. When she needed a headwrap built to hold its shape under stage lights, through a set that never let up, Gele Glamzzz was the call.</p>
               <p className="pull-quote" data-reveal style={{ marginTop: "1.4rem", fontSize: "var(--fs-md)" }}>&ldquo;Built for the moment. Made to outlast it.&rdquo;</p>
-              <a href="/achievements" className="text-link" data-reveal style={{ marginTop: "1.2rem", display: "inline-block" }}>The full story →</a>
             </div>
           </div>
         </div>

@@ -52,8 +52,6 @@ export default function RootLayout({ children }) {
       <body>
         <a className="skip-link" href="#main">Skip to content</a>
         <SvgDefs />
-        <svg className="grain-overlay" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grainy)" /></svg>
-
         <div className="loader" id="loader" aria-hidden="true">
           <div className="loader__mark" id="loaderMark"></div>
           <div className="loader__bar"><span id="loaderBarFill"></span></div>
@@ -73,8 +71,8 @@ export default function RootLayout({ children }) {
         <GlobalScripts />
         <PageTransition />
 
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js" strategy="beforeInteractive" />
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/ScrollTrigger.min.js" strategy="beforeInteractive" />
+        <Script src="/vendor/gsap.min.js" strategy="beforeInteractive" />
+        <Script src="/vendor/ScrollTrigger.min.js" strategy="beforeInteractive" />
       </body>
     </html>
   );

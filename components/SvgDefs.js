@@ -2,11 +2,6 @@ export default function SvgDefs() {
   return (
     <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
       <defs>
-        <filter id="grainy">
-          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" result="noise" />
-          <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0" />
-        </filter>
-
         <symbol id="fold-a" viewBox="0 0 300 375">
           <path d="M -40 415 A 300 300 0 0 1 340 75" fill="none" stroke="currentColor" strokeWidth="1" />
           <path d="M -10 380 A 260 260 0 0 1 310 40" fill="none" stroke="currentColor" strokeWidth="1" opacity=".7" />

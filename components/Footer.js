@@ -30,6 +30,7 @@ export default function Footer() {
             <a href="/classes">Classes</a>
             <a href="/journal">Journal</a>
             <a href="/achievements">Achievements</a>
+            <a href="/contact">Contact</a>
             <a href="/booking">Book</a>
           </div>
         </div>

@@ -10,6 +10,7 @@ export default function MobileMenu() {
         <a href="/about" className="mobile-menu__link" data-nav-link="/about">About</a>
         <a href="/journal" className="mobile-menu__link" data-nav-link="/journal">Journal</a>
         <a href="/achievements" className="mobile-menu__link" data-nav-link="/achievements">Achievements</a>
+        <a href="/contact" className="mobile-menu__link" data-nav-link="/contact">Contact</a>
         <a href="/booking" className="mobile-menu__link" data-nav-link="/booking">Book</a>
       </nav>
       <div className="mobile-menu__foot">

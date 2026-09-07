@@ -16,7 +16,7 @@ export default function AchievementsPage() {
         </div>
       </section>
 
-      <section className="section-pad" style={{ background: "var(--void)", color: "var(--ivory)", paddingTop: "clamp(1rem,3vw,2rem)" }}>
+      <section className="section-pad on-dark" style={{ background: "var(--void)", color: "var(--ivory)", paddingTop: "clamp(1rem,3vw,2rem)" }}>
         <div className="container container--narrow">
           <div className="achievements-list">
 
