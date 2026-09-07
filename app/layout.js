@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import MobileMenu from "@/components/MobileMenu";
 import Footer from "@/components/Footer";
 import GlobalScripts from "@/components/GlobalScripts";
+import PageTransition from "@/components/PageTransition";
 import SvgDefs from "@/components/SvgDefs";
 
 export const metadata = {
@@ -70,6 +71,7 @@ export default function RootLayout({ children }) {
         <Footer />
 
         <GlobalScripts />
+        <PageTransition />
 
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js" strategy="beforeInteractive" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/ScrollTrigger.min.js" strategy="beforeInteractive" />

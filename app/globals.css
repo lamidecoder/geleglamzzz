@@ -246,7 +246,7 @@ html.has-fine-pointer.has-motion a, html.has-fine-pointer.has-motion button { cu
    4. LOADING SCREEN
    ========================================================================== */
 .loader {
-  position: fixed; inset: 0; z-index: 1000; background: var(--void);
+  position: fixed; inset: 0; z-index: 1000;
   display: flex; align-items: center; justify-content: center; flex-direction: column;
   gap: 1.6rem;
 }

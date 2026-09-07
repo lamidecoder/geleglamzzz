@@ -126,9 +126,9 @@ export default function HomePage() {
               </div>
             </div>
             <div data-reveal>
-              <span className="eyebrow" style={{ color: "var(--gold-soft)" }}>Special Guest</span>
-              <h2 className="h3" style={{ marginTop: ".8rem" }}>Styled alongside<br />Fisayo Alonge.</h2>
-              <p className="body-copy" style={{ marginTop: "1.2rem" }}>Another notable name in the Gele Glamzzz story, details to follow shortly.</p>
+              <span className="eyebrow" style={{ color: "var(--gold-soft)" }}>Notable Work</span>
+              <h2 className="h3" style={{ marginTop: ".8rem" }}>Styled for<br />the moment.</h2>
+              <p className="body-copy" style={{ marginTop: "1.2rem" }}>Fisayo Alonge, styled by Gele Glamzzz, wearing a crown built for exactly that kind of presence.</p>
             </div>
           </div>
         </div>

@@ -18,8 +18,15 @@ export default function HomeScripts() {
 
       if (video && !prefersReducedMotion) {
         const showVideo = () => video.classList.add("is-ready");
-        video.addEventListener("canplay", showVideo);
-        video.addEventListener("loadeddata", showVideo);
+        if (video.readyState >= 3) {
+          // preload="auto" can finish loading before this code even runs,
+          // especially on a fast connection — if so, canplay/loadeddata
+          // already fired and this listener would never see them.
+          showVideo();
+        } else {
+          video.addEventListener("canplay", showVideo);
+          video.addEventListener("loadeddata", showVideo);
+        }
         video.addEventListener("error", () => {
           const err = video.error;
           console.error(
