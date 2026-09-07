@@ -47,7 +47,6 @@ export default function JournalPage() {
               </div>
             ))}
           </div>
-          <p className="field__hint" style={{ marginTop: "2rem", maxWidth: "56ch" }}>Video slots are wired up and ready: each one autoplays muted and looped with no controls the moment a real file is added (see the TODO comment in the code for exactly where).</p>
         </div>
       </section>
 

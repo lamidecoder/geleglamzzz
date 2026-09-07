@@ -5,9 +5,7 @@ import { SERVICES } from "@/lib/data";
 
 const STEP_NAMES = ["Your Occasion", "Your Date", "Your Experience", "Your Details", "Review & Send"];
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const OCCASIONS = ["Bridal", "Traditional Ceremony", "Birthday / Celebration", "Photoshoot", "Private Event", "Other"];
-/* TODO(backend): replace with a real availability feed */
-const SAMPLE_UNAVAILABLE = ["2026-09-12", "2026-09-13", "2026-09-19", "2026-09-26", "2026-10-03", "2026-10-10", "2026-10-24", "2026-10-31"];
+const OCCASIONS = ["Bridal", "Traditional Ceremony", "Birthday / Celebration", "Photoshoot", "Corporate Workshop", "Other"];
 
 function pad(n) { return n < 10 ? "0" + n : "" + n; }
 function isoDate(y, m, d) { return `${y}-${pad(m + 1)}-${pad(d)}`; }
@@ -104,21 +102,18 @@ export default function BookingPage() {
                       const iso = isoDate(calMonth.y, calMonth.m, d);
                       const thisDate = new Date(calMonth.y, calMonth.m, d);
                       const isPast = thisDate < today;
-                      const isUnavail = SAMPLE_UNAVAILABLE.includes(iso);
                       const isSelected = date === iso;
                       return (
-                        <button key={d} type="button" disabled={isPast || isUnavail}
-                          className={`calendar__day${isPast ? " is-past" : isUnavail ? " is-unavailable" : " is-enabled"}${isSelected ? " is-selected" : ""}`}
+                        <button key={d} type="button" disabled={isPast}
+                          className={`calendar__day${isPast ? " is-past" : " is-enabled"}${isSelected ? " is-selected" : ""}`}
                           onClick={() => { setDate(iso); setDateLabel(thisDate.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" })); }}>
                           {d}
                         </button>
                       );
                     })}
                   </div>
-                  <div className="calendar__legend"><span><i></i>Available</span><span><i className="unavail"></i>Unavailable</span></div>
                   <p className="calendar__selected-note">{date ? `Selected: ${dateLabel}` : "No date selected yet."}</p>
                 </div>
-                <p className="field__hint" style={{ marginTop: "1rem", maxWidth: "46ch" }}>Sample availability shown for preview. Connect a real booking backend to reflect live availability automatically.</p>
               </div>
             )}
 
