@@ -54,9 +54,25 @@ function findCtaVideo() {
   }
 }
 
+// Same pattern for the "Every fold has intention" section — drop a video
+// into public/videos/intro/ and it replaces the static photo automatically.
+function findIntroVideo() {
+  const dir = path.join(process.cwd(), "public", "videos", "intro");
+  const extToType = { ".mp4": "video/mp4", ".webm": "video/webm", ".mov": "video/quicktime" };
+  try {
+    if (!fs.existsSync(dir)) return null;
+    const match = fs.readdirSync(dir).find((f) => extToType[path.extname(f).toLowerCase()]);
+    if (!match) return null;
+    return { src: "/videos/intro/" + match, type: extToType[path.extname(match).toLowerCase()] };
+  } catch {
+    return null;
+  }
+}
+
 export default function HomePage() {
   const heroVideo = findHeroVideo(); // checked fresh on every request, not cached
   const ctaVideo = findCtaVideo();
+  const introVideo = findIntroVideo();
   return (
     <>
       {/* ============ Hero ============ */}
@@ -140,7 +156,13 @@ export default function HomePage() {
         <div className="container intro__grid intro--media-right">
           <div className="intro__media media-frame" data-reveal-scale>
             <div className="media-frame__art">
-              <img src="/images/intro-detail-fan.jpg" alt="Close-up detail of a hand-finished emerald green and gold gele fan fold" loading="lazy" />
+              {introVideo ? (
+                <video muted loop autoPlay playsInline preload="metadata" aria-label="Detail of a hand-finished gele fold">
+                  <source src={introVideo.src} type={introVideo.type} />
+                </video>
+              ) : (
+                <img src="/images/intro-detail-fan.jpg" alt="Close-up detail of a hand-finished emerald green and gold gele fan fold" loading="lazy" />
+              )}
             </div>
           </div>
           <div className="intro__text">

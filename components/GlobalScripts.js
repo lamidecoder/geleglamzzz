@@ -25,6 +25,51 @@ export default function GlobalScripts() {
     }
     document.addEventListener("click", placeholderGuard);
 
+    // magnetic buttons — subtle pull toward the cursor, delegated so it
+    // keeps working as pages (and their buttons) mount/unmount via routing
+    let magnetTarget = null;
+    function onMagnetMove(e) {
+      if (!hasFinePointer) return;
+      const btn = e.target.closest(".btn");
+      if (btn) {
+        magnetTarget = btn;
+        const r = btn.getBoundingClientRect();
+        const relX = e.clientX - (r.left + r.width / 2);
+        const relY = e.clientY - (r.top + r.height / 2);
+        btn.style.setProperty("--magnet-x", relX * 0.25 + "px");
+        btn.style.setProperty("--magnet-y", relY * 0.25 + "px");
+      } else if (magnetTarget) {
+        magnetTarget.style.setProperty("--magnet-x", "0px");
+        magnetTarget.style.setProperty("--magnet-y", "0px");
+        magnetTarget = null;
+      }
+    }
+    document.addEventListener("mousemove", onMagnetMove);
+
+    // 3D tilt on photo cards — subtle, premium, resets cleanly to the
+    // resting state on mouseleave so it never fights the scroll-reveal system
+    const TILT_SELECTOR = ".gallery__item, .founder-strip__item, .instagram__item, .classes__media";
+    let tiltTarget = null;
+    function resetTilt(el) { el.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)"; }
+    function onTiltMove(e) {
+      if (!hasFinePointer) return;
+      const card = e.target.closest(TILT_SELECTOR);
+      if (card) {
+        if (tiltTarget && tiltTarget !== card) resetTilt(tiltTarget);
+        tiltTarget = card;
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const rotateY = (px - 0.5) * 14;
+        const rotateX = (0.5 - py) * 14;
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+      } else if (tiltTarget) {
+        resetTilt(tiltTarget);
+        tiltTarget = null;
+      }
+    }
+    document.addEventListener("mousemove", onTiltMove);
+
     // custom cursor
     const cursor = document.getElementById("cursor");
     const label = document.getElementById("cursorLabel");
@@ -137,6 +182,8 @@ export default function GlobalScripts() {
 
     return () => {
       document.removeEventListener("click", placeholderGuard);
+      document.removeEventListener("mousemove", onMagnetMove);
+      document.removeEventListener("mousemove", onTiltMove);
       cursorCleanup();
       document.removeEventListener("scroll", onScroll);
       if (burger) burger.removeEventListener("click", toggleMenu);

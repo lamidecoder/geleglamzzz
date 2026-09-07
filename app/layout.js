@@ -5,6 +5,8 @@ import MobileMenu from "@/components/MobileMenu";
 import Footer from "@/components/Footer";
 import GlobalScripts from "@/components/GlobalScripts";
 import PageTransition from "@/components/PageTransition";
+import SmoothScroll from "@/components/SmoothScroll";
+import BackToTop from "@/components/BackToTop";
 import SvgDefs from "@/components/SvgDefs";
 
 export const metadata = {
@@ -70,6 +72,8 @@ export default function RootLayout({ children }) {
 
         <GlobalScripts />
         <PageTransition />
+        <SmoothScroll />
+        <BackToTop />
 
         <Script src="/vendor/gsap.min.js" strategy="beforeInteractive" />
         <Script src="/vendor/ScrollTrigger.min.js" strategy="beforeInteractive" />

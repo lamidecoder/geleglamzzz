@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer__mark-lockup">
-          <LogoMark />
+          <LogoMark drawOnScroll />
           <p className="footer__mark" style={{ marginBottom: 0 }}>GELE<br />GLAMZZZ</p>
         </div>
         <div className="footer__grid">
