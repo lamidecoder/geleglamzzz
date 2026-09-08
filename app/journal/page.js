@@ -31,7 +31,7 @@ export default function JournalPage() {
         <div className="container">
           <div className="media-gallery" data-reveal-scale>
             {JOURNAL_MEDIA.map((m, i) => (
-              <div key={i} className={`media-gallery__item${m.wide ? " media-gallery__item--wide" : ""}`}>
+              <div key={i} className="media-gallery__item">
                 {m.type === "video" ? (
                   <>
                     {/* TODO(video): drop an .mp4 at the path in `suggest` (see lib/data.js) and set `src` — it will autoplay muted, looped, with no controls, exactly as is. Until then the poster frame shows. */}

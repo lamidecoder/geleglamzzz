@@ -21,6 +21,8 @@ export default function BookingPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", time: "", location: "", people: 1, notes: "" });
   const [calMonth, setCalMonth] = useState({ y: today.getFullYear(), m: today.getMonth() });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [formError, setFormError] = useState(false);
 
   function goTo(n) { setStep(n); if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: window.__prefersReducedMotion ? "auto" : "smooth" }); }
@@ -39,12 +41,28 @@ export default function BookingPage() {
     if (step < 5) goTo(step + 1);
   }
 
-  function handleSubmit() {
-    /* TODO(backend): send { occasion, date, service, form } to a real endpoint, e.g.
-       fetch('/api/bookings', { method:'POST', headers:{'Content-Type':'application/json'},
-         body: JSON.stringify({ occasion, date, service, form }) }) */
-    setSubmitted(true);
-    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: window.__prefersReducedMotion ? "auto" : "smooth" });
+  async function handleSubmit() {
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ occasion, dateLabel, serviceTitle: service, form }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setSubmitError(data.error || "Something went wrong. Please try again.");
+        setSubmitting(false);
+        return;
+      }
+      setSubmitted(true);
+      if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: window.__prefersReducedMotion ? "auto" : "smooth" });
+    } catch {
+      setSubmitError("Could not reach the server. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function resetAll() {
@@ -162,13 +180,14 @@ export default function BookingPage() {
                   ))}
                 </dl>
                 <p className="field__hint" style={{ marginBottom: "2rem", maxWidth: "52ch" }}>This sends a request, not a confirmed appointment. Gele Glamzzz will reply to confirm availability.</p>
+                {submitError && <p className="field__hint" style={{ color: "var(--burgundy)", marginBottom: "1rem" }}>{submitError}</p>}
               </div>
             )}
 
             <div className="booking__nav" style={step === 1 ? { justifyContent: "flex-end" } : undefined}>
               {step > 1 && <button className="booking__back" onClick={() => goTo(step - 1)}>← Back</button>}
               {step < 5 && <button className="btn btn--primary" disabled={!canContinue} onClick={handleNext}>Continue <span className="btn__arrow">→</span></button>}
-              {step === 5 && <button className="btn btn--primary" onClick={handleSubmit}>Request my appointment <span className="btn__arrow">→</span></button>}
+              {step === 5 && <button className="btn btn--primary" onClick={handleSubmit} disabled={submitting}>{submitting ? "Sending…" : "Request my appointment"} <span className="btn__arrow">→</span></button>}
             </div>
           </>
         )}

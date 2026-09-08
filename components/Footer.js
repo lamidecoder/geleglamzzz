@@ -21,7 +21,7 @@ export default function Footer() {
           </div>
           <div className="footer__col">
             <h4>Contact</h4>
-            <a href="mailto:hello@geleglamzzz.com" data-placeholder-link>hello@geleglamzzz.com</a>
+            <a href="mailto:tobibamidelejohn98@gmail.com">tobibamidelejohn98@gmail.com</a>
           </div>
           <div className="footer__col">
             <h4>Explore</h4>

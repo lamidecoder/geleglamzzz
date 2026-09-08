@@ -151,6 +151,25 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Featured guest — Catherine Agbaje */}
+      <section className="section-pad on-dark" style={{ background: "var(--void)", color: "var(--ivory)" }}>
+        <div className="container">
+          <div className="guest-feature">
+            <div className="guest-feature__media media-frame" data-reveal-scale>
+              <div className="dissolve">
+                <img src="/images/catherine-agbaje-1.jpg" alt="Catherine Agbaje in a beaded pink gown and matching gele" loading="lazy" />
+                <img src="/images/catherine-agbaje-2.jpg" alt="Catherine Agbaje in a beaded pink gown, standing portrait" loading="lazy" />
+              </div>
+            </div>
+            <div data-reveal>
+              <span className="eyebrow" style={{ color: "var(--gold-soft)" }}>Notable Work</span>
+              <h2 className="h3" style={{ marginTop: ".8rem" }}>Styled for<br />the evening.</h2>
+              <p className="body-copy" style={{ marginTop: "1.2rem" }}>Catherine Agbaje, styled by Gele Glamzzz, in a beaded gele built to carry a room.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ============ Intro / Philosophy ============ */}
       <section className="intro section-pad" id="philosophy">
         <div className="container intro__grid intro--media-right">
