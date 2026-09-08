@@ -220,7 +220,6 @@ export default function HomePage() {
                 <span className="testimonials__count" id="testimonialCount">01 / 0{TESTIMONIALS.length}</span>
                 <button className="testimonials__arrow" id="testimonialNext" aria-label="Next testimonial">→</button>
               </div>
-              <p className="testimonials__note">Sample content shown. Replace with real client testimonials.</p>
             </div>
           </div>
         </div>
