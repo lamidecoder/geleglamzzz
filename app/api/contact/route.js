@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { contactNotificationHtml, contactConfirmationHtml } from "@/lib/emailTemplates";
 
 // A simple in-memory rate limiter — resets on server restart. Blocks a burst
 // of spam from the same IP without needing a database. Fine for a site this
@@ -39,12 +40,12 @@ export async function POST(request) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
-      from: "Gele Glamzzz Website <onboarding@resend.dev>",
+      from: "Gele Glamzzz Website <hello@jaygele.com>",
       to: process.env.CONTACT_TO_EMAIL,
       replyTo: email,
       subject: `New website enquiry from ${name}`,
       text: `New message from the Gele Glamzzz contact form.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-      html: `<h2>New website enquiry</h2><p><strong>Name:</strong> ${escapeHtml(name)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p><p><strong>Message:</strong></p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
+      html: contactNotificationHtml({ name, email, message }),
     });
 
     if (error) {
@@ -58,11 +59,12 @@ export async function POST(request) {
     // an already-successful enquiry into an error for the customer.
     try {
       await resend.emails.send({
-        from: "Gele Glamzzz <onboarding@resend.dev>",
+        from: "Gele Glamzzz <hello@jaygele.com>",
         to: email,
+        replyTo: [process.env.CONTACT_TO_EMAIL, "hello@jaygele.com"],
         subject: "We've received your message — Gele Glamzzz",
         text: `Hi ${name},\n\nThanks for reaching out to Gele Glamzzz. We've received your message and will get back to you shortly.\n\nFor your reference, here's what you sent:\n"${message}"\n\nSpeak soon,\nGele Glamzzz`,
-        html: `<p>Hi ${escapeHtml(name)},</p><p>Thanks for reaching out to Gele Glamzzz. We've received your message and will get back to you shortly.</p><p>For your reference, here's what you sent:</p><p style="color:#555">${escapeHtml(message).replace(/\n/g, "<br>")}</p><p>Speak soon,<br>Gele Glamzzz</p>`,
+        html: contactConfirmationHtml({ name, message }),
       });
     } catch (confirmErr) {
       console.error("Contact confirmation email failed (business notification already sent):", confirmErr);

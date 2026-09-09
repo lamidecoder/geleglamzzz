@@ -10,14 +10,14 @@ import BackToTop from "@/components/BackToTop";
 import SvgDefs from "@/components/SvgDefs";
 
 export const metadata = {
-  metadataBase: new URL("https://www.geleglamzzz.com"),
+  metadataBase: new URL("https://jaygele.com"),
   title: "Gele Glamzzz: Luxury Gele Artistry in London | The Art of the Crown",
   description:
     "Gele Glamzzz is a London based luxury gele artist crafting bridal, ceremonial and editorial headwraps with precision and presence. Discover the artistry and book your experience.",
   openGraph: {
     title: "Gele Glamzzz: The Art of the Crown",
     description: "Luxury gele artistry for weddings, traditional ceremonies and editorial moments. Based in London.",
-    url: "https://www.geleglamzzz.com/",
+    url: "https://jaygele.com/",
     siteName: "Gele Glamzzz",
     locale: "en_GB",
     type: "website",
@@ -75,8 +75,8 @@ export default function RootLayout({ children }) {
         <SmoothScroll />
         <BackToTop />
 
-        <Script src="/vendor/gsap.min.js" strategy="beforeInteractive" />
-        <Script src="/vendor/ScrollTrigger.min.js" strategy="beforeInteractive" />
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js" strategy="beforeInteractive" />
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/ScrollTrigger.min.js" strategy="beforeInteractive" />
       </body>
     </html>
   );

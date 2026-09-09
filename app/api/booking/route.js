@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { bookingNotificationHtml, bookingConfirmationHtml } from "@/lib/emailTemplates";
 
 const submissions = new Map();
 const WINDOW_MS = 10 * 60 * 1000;
@@ -49,12 +50,12 @@ export async function POST(request) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
-      from: "Gele Glamzzz Website <onboarding@resend.dev>",
+      from: "Gele Glamzzz Website <hello@jaygele.com>",
       to: process.env.CONTACT_TO_EMAIL,
       replyTo: form.email,
       subject: `New booking request — ${occasion} — ${form.name}`,
       text: `New booking request from the Gele Glamzzz website.\n\n${lines.join("\n")}\n\nThis is a request, not a confirmed appointment. Reply directly to ${form.email} to confirm.`,
-      html: `<h2>New booking request</h2><ul>${lines.map((l) => `<li>${escapeHtml(l)}</li>`).join("")}</ul><p>This is a request, not a confirmed appointment. Reply directly to confirm.</p>`,
+      html: bookingNotificationHtml({ occasion, dateLabel, serviceTitle, form }),
     });
 
     if (error) {
@@ -73,11 +74,12 @@ export async function POST(request) {
     ];
     try {
       await resend.emails.send({
-        from: "Gele Glamzzz <onboarding@resend.dev>",
+        from: "Gele Glamzzz <hello@jaygele.com>",
         to: form.email,
+        replyTo: [process.env.CONTACT_TO_EMAIL, "hello@jaygele.com"],
         subject: "We've received your booking request — Gele Glamzzz",
         text: `Hi ${form.name},\n\nThanks for your booking request with Gele Glamzzz. Here's a summary of what you sent:\n\n${customerLines.join("\n")}\n\nThis is a request, not a confirmed appointment — we'll be in touch shortly to confirm availability and finalise the details.\n\nSpeak soon,\nGele Glamzzz`,
-        html: `<p>Hi ${escapeHtml(form.name)},</p><p>Thanks for your booking request with Gele Glamzzz. Here's a summary of what you sent:</p><ul>${customerLines.map((l) => `<li>${escapeHtml(l)}</li>`).join("")}</ul><p>This is a request, not a confirmed appointment — we'll be in touch shortly to confirm availability and finalise the details.</p><p>Speak soon,<br>Gele Glamzzz</p>`,
+        html: bookingConfirmationHtml({ occasion, dateLabel, serviceTitle, form }),
       });
     } catch (confirmErr) {
       console.error("Booking confirmation email failed (business notification already sent):", confirmErr);

@@ -22,3 +22,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Local environment/fix scripts
+fix-env-local.js
+.env
+.env.local
+.env.*.local

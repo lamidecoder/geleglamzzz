@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://www.geleglamzzz.com/sitemap.xml",
+    sitemap: "https://jaygele.com/sitemap.xml",
   };
 }

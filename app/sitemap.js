@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const base = "https://www.geleglamzzz.com";
+  const base = "https://jaygele.com";
   const routes = [
     "",
     "/services",

@@ -234,7 +234,7 @@ export default function HomePage() {
           <div className="proof__item"><span>Bridal</span><p className="proof__sub">Aisle to reception</p></div>
           <div className="proof__item"><span>Occasions</span><p className="proof__sub">Birthdays &amp; milestones</p></div>
           <div className="proof__item"><span>Editorial</span><p className="proof__sub">Campaigns &amp; shoots</p></div>
-          <div className="proof__item"><span>Private Events</span><p className="proof__sub">By invitation</p></div>
+          <div className="proof__item"><span>Corporate</span><p className="proof__sub">Team workshops</p></div>
         </div>
       </section>
 
