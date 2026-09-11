@@ -17,11 +17,11 @@ export default function Footer() {
           <div className="footer__col">
             <h4>Connect</h4>
             <a href="https://www.instagram.com/geleglamzzz/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="#" data-placeholder-link>TikTok</a>
+            <a href="https://www.tiktok.com/@jaygeleboy6" target="_blank" rel="noopener noreferrer">TikTok</a>
           </div>
           <div className="footer__col">
             <h4>Contact</h4>
-            <a href="mailto:tobibamidelejohn98@gmail.com">tobibamidelejohn98@gmail.com</a>
+            <a href="mailto:geleglamzzz@gmail.com">geleglamzzz@gmail.com</a>
           </div>
           <div className="footer__col">
             <h4>Explore</h4>

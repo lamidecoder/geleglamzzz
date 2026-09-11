@@ -62,7 +62,7 @@ export default function ContactClient() {
             <div className="contact-methods__item">
               <span className="contact-methods__num">01</span>
               <h4>Email</h4>
-              <a href="mailto:tobibamidelejohn98@gmail.com" className="text-link">tobibamidelejohn98@gmail.com</a>
+              <a href="mailto:geleglamzzz@gmail.com" className="text-link">geleglamzzz@gmail.com</a>
             </div>
             <div className="contact-methods__item">
               <span className="contact-methods__num">02</span>

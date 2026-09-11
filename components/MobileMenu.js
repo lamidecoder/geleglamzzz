@@ -15,7 +15,7 @@ export default function MobileMenu() {
       </nav>
       <div className="mobile-menu__foot">
         <a href="https://www.instagram.com/geleglamzzz/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="#" data-placeholder-link>TikTok</a>
+        <a href="https://www.tiktok.com/@jaygeleboy6" target="_blank" rel="noopener noreferrer">TikTok</a>
       </div>
     </div>
   );
