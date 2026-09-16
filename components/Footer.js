@@ -16,8 +16,15 @@ export default function Footer() {
           </div>
           <div className="footer__col">
             <h4>Connect</h4>
-            <a href="https://www.instagram.com/geleglamzzz/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://www.tiktok.com/@jaygeleboy6" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <div className="footer__social">
+              <a href="https://www.instagram.com/geleglamzzz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="footer__social-icon">
+                <svg width="20" height="20"><use href="#icon-instagram" /></svg>
+              </a>
+              <a href="https://www.tiktok.com/@jaygeleboy6" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="footer__social-icon">
+                <svg width="20" height="20"><use href="#icon-tiktok" /></svg>
+              </a>
+            </div>
+            <a href="https://jaaythecreator.com" target="_blank" rel="noopener noreferrer" style={{ marginTop: ".6rem", paddingTop: ".6rem", borderTop: "1px solid rgba(242,233,216,.12)" }}>Jaaythecreator<br /><span style={{ fontSize: "11px", opacity: .6, fontWeight: 400 }}>Wedding photo &amp; video</span></a>
           </div>
           <div className="footer__col">
             <h4>Contact</h4>

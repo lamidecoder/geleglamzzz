@@ -476,6 +476,18 @@ html.has-fine-pointer.has-motion a, html.has-fine-pointer.has-motion button { cu
 @media (min-width: 700px) { .hero__scroll { display: flex; } }
 @media (prefers-reduced-motion: reduce) { .hero__scroll-line span { animation: none; transform: translateY(0); } }
 
+.hero__social {
+  position: absolute; right: var(--gutter); bottom: clamp(1.2rem,3vw,2rem); z-index: 5;
+  display: none; align-items: center; gap: .9rem;
+}
+.hero__social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(242,233,216,.3);
+  color: rgba(242,233,216,.85); transition: color .3s var(--ease-soft), border-color .3s var(--ease-soft), transform .3s var(--ease-soft);
+}
+.hero__social a:hover { color: var(--gold-soft); border-color: var(--gold-soft); transform: translateY(-2px); }
+@media (min-width: 700px) { .hero__social { display: flex; } }
+
 /* progress bar for whole-page scroll */
 .scroll-progress {
   position: fixed; top: 0; left: 0; height: 2px; background: var(--gold); z-index: 500;
@@ -901,6 +913,13 @@ html.has-fine-pointer.has-motion a, html.has-fine-pointer.has-motion button { cu
 .footer__col h4 { font-family: var(--font-sans); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
 .footer__col a, .footer__col p { display: block; font-family: var(--font-sans); font-size: var(--fs-sm); color: rgba(242,233,216,.75); margin-bottom: .6rem; }
 .footer__col a:hover { color: var(--ivory); }
+.footer__social { display: flex; gap: .9rem; margin-bottom: .6rem; }
+.footer__social-icon {
+  display: flex !important; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(242,233,216,.25);
+  color: rgba(242,233,216,.75); margin-bottom: 0 !important; transition: color .3s var(--ease-soft), border-color .3s var(--ease-soft), transform .3s var(--ease-soft);
+}
+.footer__social-icon:hover { color: var(--gold-soft); border-color: var(--gold-soft); transform: translateY(-2px); }
 .footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-block: 1.6rem; font-family: var(--font-sans); font-size: var(--fs-xs); color: rgba(242,233,216,.45); }
 .footer__bottom a { color: rgba(242,233,216,.45); }
 .footer__bottom a:hover { color: var(--ivory); }

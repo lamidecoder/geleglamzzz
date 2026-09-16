@@ -6,7 +6,7 @@ import { TESTIMONIALS, INSTAGRAM, JOURNAL_MEDIA } from "@/lib/data";
 export const metadata = {
   title: "Gele Glamzzz: Luxury Gele Artistry in London | The Art of the Crown",
   description: "Gele Glamzzz is a London based luxury gele artist crafting bridal, ceremonial and editorial headwraps with precision and presence. Discover the artistry and book your experience.",
-  keywords: ["gele artist London", "luxury gele styling", "aso oke gele", "bridal gele London", "Nigerian headwrap stylist", "gele Glamzzz"],
+  keywords: ["gele artist London", "luxury gele styling", "aso oke gele", "bridal gele London", "asoebi styling London", "Nigerian headwrap stylist", "gele Glamzzz"],
   alternates: { canonical: "/" },
 };
 
@@ -109,6 +109,10 @@ export default function HomePage() {
           </div>
         </div>
         <div className="hero__scroll"><span>Scroll</span><span className="hero__scroll-line"><span></span></span></div>
+        <div className="hero__social">
+          <a href="https://www.instagram.com/geleglamzzz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="17" height="17"><use href="#icon-instagram" /></svg></a>
+          <a href="https://www.tiktok.com/@jaygeleboy6" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg width="17" height="17"><use href="#icon-tiktok" /></svg></a>
+        </div>
       </section>
 
       {/* ============ Notable Work: Ayra Starr ============ */}

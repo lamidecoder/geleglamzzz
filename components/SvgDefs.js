@@ -26,6 +26,15 @@ export default function SvgDefs() {
           <line x1="220" y1="140" x2="240" y2="375" stroke="currentColor" strokeWidth="1" opacity=".3" />
           <circle cx="150" cy="90" r="3" fill="currentColor" />
         </symbol>
+        <symbol id="icon-instagram" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
+        </symbol>
+
+        <symbol id="icon-tiktok" viewBox="0 0 24 24">
+          <path d="M16.5 3c.4 2.2 1.8 3.7 4 4v3c-1.5 0-2.9-.4-4-1.2v6.4c0 3.3-2.7 5.8-5.9 5.8S4.7 18.5 4.7 15.2s2.7-5.8 5.9-5.8c.3 0 .6 0 .9.1v3.1a2.9 2.9 0 0 0-.9-.1 2.7 2.7 0 1 0 2.7 2.7V3h3.2Z" fill="currentColor" />
+        </symbol>
       </defs>
     </svg>
   );

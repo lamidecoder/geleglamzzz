@@ -3,7 +3,7 @@ import ClassesScripts from "@/components/ClassesScripts";
 export const metadata = {
   title: "Classes: Gele Glamzzz | Learn Gele Tying in London",
   description: "Private lessons, small group workshops and bridal party masterclasses. Learn to tie a gele with Gele Glamzzz in London.",
-  keywords: ["gele tying classes London", "learn to tie gele", "gele workshop London", "bridal party gele lesson"],
+  keywords: ["gele tying classes London", "learn to tie gele", "gele tutorial London", "gele workshop London", "bridal party gele lesson"],
   alternates: { canonical: "/classes" },
 };
 

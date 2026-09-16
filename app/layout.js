@@ -36,6 +36,16 @@ const jsonLd = {
   description: "Luxury gele artistry for weddings, traditional ceremonies, editorial and private bookings.",
   areaServed: "London, United Kingdom",
   priceRange: "Price on request",
+  knowsAbout: [
+    "Gele styling",
+    "Aso oke gele",
+    "Bridal gele",
+    "Traditional ceremony gele",
+    "Asoebi styling and coordination",
+    "Editorial and photoshoot gele styling",
+    "Gele tying classes and tutorials",
+    "Corporate gele workshops",
+  ],
   sameAs: ["https://www.instagram.com/geleglamzzz/"],
 };
 
