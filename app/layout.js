@@ -1,5 +1,6 @@
 import "./globals.css";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import Nav from "@/components/Nav";
 import MobileMenu from "@/components/MobileMenu";
 import Footer from "@/components/Footer";
@@ -87,6 +88,7 @@ export default function RootLayout({ children }) {
 
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js" strategy="beforeInteractive" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/ScrollTrigger.min.js" strategy="beforeInteractive" />
+        <Analytics />
       </body>
     </html>
   );
