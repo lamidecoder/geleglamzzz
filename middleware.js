@@ -8,10 +8,12 @@
 import { NextResponse } from "next/server";
 import * as settings from "./lib/maintenance";
 import { isPausedAt } from "./lib/maintenance-engine";
+import { maintenanceHtml, maintenanceJson } from "./lib/maintenance-page";
 
 export function middleware(request) {
   if (process.env.NODE_ENV === "development") return NextResponse.next();
 
+  const now = new Date();
   const paused = isPausedAt(
     {
       manual: settings.MAINTENANCE_ENABLED === true,
@@ -19,20 +21,23 @@ export function middleware(request) {
       from: settings.AUTO_PAUSE_FROM,
       timeZone: settings.AUTO_PAUSE_TIMEZONE || "Europe/London",
     },
-    new Date()
+    now
   );
   if (!paused) return NextResponse.next();
 
+  const info = settings.MAINTENANCE;
   const headers = {
-    "Retry-After": String(settings.MAINTENANCE.retryAfterSeconds),
+    "Retry-After": String((info && info.retryAfterSeconds) || 86400),
     "Cache-Control": "no-store, max-age=0",
   };
 
-  if (request.nextUrl.pathname.startsWith("/api/")) {
-    return NextResponse.json(settings.maintenanceJson(), { status: 503, headers });
+  const path = request.nextUrl.pathname;
+
+  if (path.startsWith("/api/")) {
+    return NextResponse.json(maintenanceJson(info), { status: 503, headers });
   }
 
-  return new NextResponse(settings.maintenanceHtml(), {
+  return new NextResponse(maintenanceHtml(info, { path, now }), {
     status: 503,
     headers: { ...headers, "Content-Type": "text/html; charset=utf-8" },
   });
